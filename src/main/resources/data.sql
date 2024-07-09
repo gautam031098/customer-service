@@ -1,0 +1,1 @@
+INSERT INTO CUSTOMER (email, name) VALUES ('test1@gmail.com', 'Test1' ) , ('test2@gmail.com', 'Test2');
