@@ -20,17 +20,17 @@ jobs:
       - name: Login to docker hub
         run: docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
       - name: Build docker image
-        run: docker build -t customer-service .
+        run: docker build -t gautamnaik1998/customer-service .
       - name: Publish image to docker hub
-        run: docker push customer-service:latest
+        run: docker push gautamnaik1998/customer-service:latest
 
   deploy:
     needs: build
     runs-on: [aws-ec2-customer-service]
     steps:
       - name: Pull Image from docker hub
-        run: docker pull customer-service:latest
+        run: docker pull gautamnaik1998/customer-service:latest
       - name: Delete old container
         run: docker rm -f customer-service-container
       - name: Run docker container
-        run: docker run -d -p 8083:8083 --name customer-service-container customer-service
+        run: docker run -d -p 8083:8083 --name customer-service-container gautamnaik1998/customer-service
